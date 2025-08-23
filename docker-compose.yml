@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  streamlit-app:
+    container_name: streamlit-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - proxy_network
+    volumes:
+      - .:/app  # optional, lets you edit code live without rebuilding
+    expose:
+      - "8501"
+
+networks:
+  proxy_network:
+    external: true
